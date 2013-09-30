@@ -1,5 +1,4 @@
-assert      = require('assert');
-StopWords   = require('../stop_words');
+StopWords   = require('../../ch7/stop_words');
 
 describe('StopWords', function(){
   var stopWords;
@@ -10,26 +9,26 @@ describe('StopWords', function(){
 
   it('should handle a null input', function(){
     var result = stopWords.removeStopWords(null);
-    assert.equal(result.length, 0);
+    result.length.should.equal(0)
   });
 
   it('should handle an empty input', function(){
     var result = stopWords.removeStopWords([]);
-    assert.equal(result.length, 0);
+    result.length.should.equal(0);
   });
 
   it('should handle no stop words', function(){
     var result = stopWords.removeStopWords(['meaningful', 'words', 'remain']);
-    assert.equal(result.length, 3);
+    result.length.should.equal(3);
   });
 
   it('should handle all stop words', function(){
     var result = stopWords.removeStopWords(['able', 'my', 'your']);
-    assert.equal(result.length, 0);
+    result.length.should.equal(0);
   });
 
   it('should handle a mix of stop words and meaningful words', function(){
     var result = stopWords.removeStopWords(['meaningful', 'able', 'words', 'my', 'your']);
-    assert.equal(result.length, 2);
+    result.length.should.equal(2);
   });
 });

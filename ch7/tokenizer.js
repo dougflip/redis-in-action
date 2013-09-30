@@ -4,29 +4,21 @@ var StopWords = require('./stop_words');
 var rgxWords = /[a-z']{2,}/g;
 
 /***
- * Provides the ability to tokenize a block of text into
- *  non repeated meaningful words.
+ * Provides the ability to tokenize a block of text into non repeated words.
  * @constructor
  */
-function Tokenizer(stopWords){
-  if(stopWords == null){
-    stopWords = new StopWords();
-  }
-  this.stopWords = stopWords;
-}
+function Tokenizer(){}
 
 /***
  * Returns a collection of words
  * Duplicates are removed
- * "Stop Words" are removed to leave only meaningful search words in the collection
  */
 Tokenizer.prototype.getWords = function(content){
   if(!content || content.length == 0){
     return new Set();
   }
 
-  var words = splitWords(content);
-  return this.stopWords.removeStopWords(words);
+  return splitWords(content);
 };
 
 function splitWords(content){

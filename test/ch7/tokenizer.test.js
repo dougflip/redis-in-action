@@ -1,5 +1,4 @@
-var assert    = require('assert');
-var Tokenizer = require('../tokenizer');
+var Tokenizer = require('../../ch7/tokenizer');
 
 describe('Tokenizer', function(){
   var tokenizer;
@@ -10,27 +9,22 @@ describe('Tokenizer', function(){
 
   it('should return an empty set when given null', function(){
     var words = tokenizer.getWords(null);
-    assert.equal(words.length, 0);
+    words.length.should.equal(0);
   });
 
   it('should tokenize a single word', function(){
     var words = tokenizer.getWords('oneword');
-    assert.ok(words.has('oneword'));
+    words.has('oneword').should.be.ok;
   });
 
   it('should tokenize multiple words', function(){
     var words = tokenizer.getWords('two words');
-    assert.ok(words.has('two'));
-    assert.ok(words.has('words'));
+    words.has('two').should.be.ok;
+    words.has('words').should.be.ok;
   });
 
   it('should not duplicate words', function(){
     var words = tokenizer.getWords('two words two words');
-    assert.equal(words.length, 2);
-  });
-
-  it('should filter out stop words', function(){
-    var words = tokenizer.getWords('across the universe');
-    assert.equal(words.length, 1);
+    words.length.should.equal(2);
   });
 });
